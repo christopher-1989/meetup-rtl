@@ -1,4 +1,4 @@
-import { UserData } from '../components/SignUpForm'
+import { UserData } from '../components/SignUpForm/SignUpForm'
 
 // returns the state of *all* features for current user
 export default function postUserData(

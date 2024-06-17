@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useUser } from '../hooks/useUser.tsx'
-import postUserData from '../server/service.ts'
+import { useUser } from '../../hooks/useUser.tsx'
+import postUserData from '../../server/service.ts'
 import './SignUpForm.css'
 
 export type UserData = {
@@ -10,7 +10,7 @@ export type UserData = {
   email: string
 }
 
-const CreateUserForm = () => {
+const SignUpForm = () => {
   const [formData, setFormData] = useState<UserData>({
     firstName: '',
     lastName: '',
@@ -115,4 +115,4 @@ const CreateUserForm = () => {
   )
 }
 
-export default CreateUserForm
+export default SignUpForm
