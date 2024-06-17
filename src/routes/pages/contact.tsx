@@ -3,7 +3,7 @@ import ContactUsForm from "../../components/ContactForm"
 function Contact() {
   return (
     <>
-      <p>Contact Page</p>
+      <h1>Contact Page</h1>
       <ContactUsForm />
     </>
   )

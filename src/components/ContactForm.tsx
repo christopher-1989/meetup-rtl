@@ -1,7 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import './ContactUsForm.css'
+import { useUser } from '../hooks/useUser'
+import postUserData from '../server/service.ts'
 
-type FormData = {
+export type UserData = {
   firstName: string
   lastName: string
   dob: string
@@ -9,12 +11,14 @@ type FormData = {
 }
 
 const ContactUsForm = () => {
-  const [formData, setFormData] = useState<FormData>({
+  
+  const [formData, setFormData] = useState<UserData>({
     firstName: '',
     lastName: '',
     dob: '',
     email: '',
   })
+  const { user, setUser } = useUser()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -24,13 +28,19 @@ const ContactUsForm = () => {
     })
   }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    // Here you can handle form submission, e.g., send the data to a server
-    console.log('Form data submitted:', formData)
-  }
+  console.log({user})
 
-  console.log({formData})
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    const succeed = (Math.floor(Math.random() * 2) + 1) % 2 === 0
+    try {
+      const result = await postUserData(formData, succeed)
+      setUser(result.data)
+      console.log("result", result.data)
+    } catch {
+      console.error("Failed to submit form")
+    }
+  }
 
   return (
     <form
@@ -92,7 +102,7 @@ const ContactUsForm = () => {
           name='email'
           value={formData.email}
           onChange={handleChange}
-          autoComplete='email'
+          autoComplete='e'
           required
         />
         <label
@@ -102,6 +112,7 @@ const ContactUsForm = () => {
           Email
         </label>
       </div>
+      {user && <p>{user.firstName}</p>}
       <button type='submit'>Submit</button>
     </form>
   )

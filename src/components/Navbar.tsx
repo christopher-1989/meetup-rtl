@@ -1,15 +1,16 @@
+import { Link } from 'react-router-dom'
 import { routes } from '../routes/router'
 
 function Navbar() {
   return (
     <nav>
       {routes.map((route, index) => (
-        <a
+        <Link
           key={index}
-          href={route.path}
+          to={route.path}
         >
           {route.label}
-        </a>
+        </Link>
       ))}
     </nav>
   )
