@@ -13,6 +13,7 @@
 
 input {
   color: #493deb;
+  min-width: 280px;
   width: 100%;
   padding: 0.5rem;
   padding-top: 1.5rem;

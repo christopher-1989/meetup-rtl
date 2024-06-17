@@ -1,7 +1,10 @@
-import { UserData } from '../components/ContactForm'
+import { UserData } from '../components/SignUpForm'
 
 // returns the state of *all* features for current user
-export default function postUserData(userData: UserData, succeed: boolean): Promise<{ok: boolean, data: UserData, status: 200 | 400}> {
+export default function postUserData(
+  userData: UserData,
+  succeed: boolean
+): Promise<{ ok: boolean; data: UserData; status: 200 | 400 }> {
   // in reality, this would have been a `fetch` call
   return new Promise((resolve, reject) => {
     let res
@@ -11,7 +14,8 @@ export default function postUserData(userData: UserData, succeed: boolean): Prom
         ok: true,
         status: 200,
       }
-      console.log({ res })
+      // Uncomment to see the mock in the console
+      // console.log({ res })
       setTimeout(resolve, 300, res)
     } else {
       res = {
@@ -19,9 +23,9 @@ export default function postUserData(userData: UserData, succeed: boolean): Prom
         ok: false,
         status: 400,
       }
-      console.log({ res })
+      // Uncomment to see the mock in the console
+      // console.log({ res })
       setTimeout(reject, 300, res)
     }
-
   })
 }

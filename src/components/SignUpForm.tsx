@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import './ContactUsForm.css'
-import { useUser } from '../hooks/useUser'
+import { useUser } from '../hooks/useUser.tsx'
 import postUserData from '../server/service.ts'
+import './SignUpForm.css'
 
 export type UserData = {
   firstName: string
@@ -10,15 +10,14 @@ export type UserData = {
   email: string
 }
 
-const ContactUsForm = () => {
-  
+const CreateUserForm = () => {
   const [formData, setFormData] = useState<UserData>({
     firstName: '',
     lastName: '',
     dob: '',
     email: '',
   })
-  const { user, setUser } = useUser()
+  const { setUser } = useUser()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -28,17 +27,16 @@ const ContactUsForm = () => {
     })
   }
 
-  console.log({user})
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const succeed = (Math.floor(Math.random() * 2) + 1) % 2 === 0
     try {
       const result = await postUserData(formData, succeed)
       setUser(result.data)
-      console.log("result", result.data)
-    } catch {
-      console.error("Failed to submit form")
+      alert('Successfully created user. Return Home')
+    } catch (e) {
+      alert('Something went wrong')
+      console.error(`Server failed to submit form`)
     }
   }
 
@@ -112,10 +110,9 @@ const ContactUsForm = () => {
           Email
         </label>
       </div>
-      {user && <p>{user.firstName}</p>}
       <button type='submit'>Submit</button>
     </form>
   )
 }
 
-export default ContactUsForm
+export default CreateUserForm
