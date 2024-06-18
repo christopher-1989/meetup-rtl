@@ -4,8 +4,7 @@ import PersonalisedHome from '../components/PersonalisedHome'
 import { User } from '../context/UserContext'
 import '@testing-library/jest-dom/vitest'
 
-
-let DEFAULT_USER: User = {
+const DEFAULT_USER: User = {
   firstName: 'Jenny',
   lastName: 'Clay',
   email: 'jenny@clay.com',
@@ -13,11 +12,24 @@ let DEFAULT_USER: User = {
 }
 
 describe('Personalised Home', () => {
-  test('displays props directly', () => {
+  test('Example of showing the DOM', () => {
     render(<PersonalisedHome user={DEFAULT_USER} />)
-    // const heading = screen.getByRole('heading')
-    // expect(heading).toContainValue("test")
-
     screen.debug()
+  })
+
+  test('Renders greeting in h2', () => {
+    render(<PersonalisedHome user={DEFAULT_USER} />)
+    const result = screen.getByRole('heading', { level: 2 })
+
+    const expected = `Hey ${DEFAULT_USER.firstName} ${DEFAULT_USER.lastName}`
+    expect(result).toHaveTextContent(expected)
+  })
+
+  test('Renders email status message', () => {
+    render(<PersonalisedHome user={DEFAULT_USER} />)
+    const result = screen.getByRole('paragraph')
+
+    const expected = `You have signed in as ${DEFAULT_USER.email}`
+    expect(result).toHaveTextContent(expected)
   })
 })
