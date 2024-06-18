@@ -20,6 +20,12 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+
+  &:focus {
+    border-color: #493deb;
+    border-width: 2px;
+    outline: none;
+  }
 }
 
 label {
@@ -43,27 +49,28 @@ button {
   border: 'solid';
   transition: all 0.2s ease;
   cursor: pointer;
-}
 
-button:focus {
-  color: #c3c6ff;
-  background-color: #493deb;
-  outline: none;
-  box-shadow: 0 0 0 2px #493deb;
-  border-color: #fffe;
-  border-width: 2px;
-}
+  &:disabled {
+    background-color: #f5f5ff;
+    border-color: #c3c6ff;
+    color: #c3c6ff;
+    cursor: unset;
+  }
 
-button:hover {
-  color: #c3c6ff;
-  background-color: #493deb;
-  outline: none;
-}
+  &:focus {
+    color: #c3c6ff;
+    background-color: #493deb;
+    outline: none;
+    box-shadow: 0 0 0 2px #493deb;
+    border-color: #fffe;
+    border-width: 2px;
+  }
 
-input:focus {
-  border-color: #493deb;
-  border-width: 2px;
-  outline: none;
+  &:hover:not(:disabled) {
+    color: #c3c6ff;
+    background-color: #493deb;
+    outline: none;
+  }
 }
 
 input:focus + label,

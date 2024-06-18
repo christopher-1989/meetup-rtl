@@ -18,16 +18,16 @@ describe('Personalised Home', () => {
   })
 
   test('Renders greeting in h2', () => {
-    render(<PersonalisedHome user={DEFAULT_USER} />)
-    const result = screen.getByRole('heading', { level: 2 })
+    const { getByRole } = render(<PersonalisedHome user={DEFAULT_USER} />)
+    const result = getByRole('heading', { level: 2 })
 
     const expected = `Hey ${DEFAULT_USER.firstName} ${DEFAULT_USER.lastName}`
     expect(result).toHaveTextContent(expected)
   })
 
   test('Renders email status message', () => {
-    render(<PersonalisedHome user={DEFAULT_USER} />)
-    const result = screen.getByRole('paragraph')
+    const { getByRole } = render(<PersonalisedHome user={DEFAULT_USER} />)
+    const result = getByRole('paragraph')
 
     const expected = `You have signed in as ${DEFAULT_USER.email}`
     expect(result).toHaveTextContent(expected)

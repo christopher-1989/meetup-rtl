@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { useUser } from '../../hooks/useUser.tsx'
 import postUserData from '../../server/service.ts'
 import './SignUpForm.css'
+import { isEmail } from 'validator'
 
 export type UserData = {
   firstName: string
@@ -40,10 +41,32 @@ const SignUpForm = () => {
     }
   }
 
+  function validateForm() {
+    const values = Object.values(formData)
+    let valid = true
+
+    // Validate each of the required fields have been added
+    values.forEach((value) => {
+      if (value.length === 0) {
+        return (valid = false)
+      }
+    })
+
+    // Validate the email field
+    if (!isEmail(formData.email)) {
+      return (valid = false)
+    }
+
+    return valid
+  }
+
+  const submitDisabled = !validateForm()
+
   return (
     <form
       onSubmit={handleSubmit}
       className='contact-form'
+      name='sign-up-form'
     >
       <div className='form-group'>
         <input
@@ -110,7 +133,12 @@ const SignUpForm = () => {
           Email
         </label>
       </div>
-      <button type='submit'>Submit</button>
+      <button
+        type='submit'
+        disabled={submitDisabled}
+      >
+        Submit
+      </button>
     </form>
   )
 }
