@@ -54,7 +54,7 @@ nav {
   align-items: center;
 }
 
-.about-wrapper {
+.about-wrapper, .about-wrapper-top {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -62,14 +62,43 @@ nav {
   justify-content: center;
   margin: auto;
   text-wrap: pretty;
+  width: 90dvw;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.about-wrapper-top {
+  height: 90dvh;
 }
 
 li {
-  font-size: x-large;
+  font-size: large;
 }
 
 .svg-link {
   color: black;
   text-decoration: underline;
-  font-size: x-large;
+  font-size: large;
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  font-style: italic;
+  font-size: medium;
+}
+
+.divider {
+  border: solid;
+  border-width: 1px;
+  width: 60vw;
+  margin: 20px auto;
+}
+
+.intro-heading {
+  padding: 0;
+  margin: 0;
 }
