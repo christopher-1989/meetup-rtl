@@ -1,5 +1,5 @@
 import { RenderOptions, render } from '@testing-library/react'
-import { UserProvider } from '../providers/UserProvider'
+import { UserProvider } from '../../providers/UserProvider'
 
 // All providers that are needed to run tests
 // eslint-disable-next-line react-refresh/only-export-components

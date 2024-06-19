@@ -30,9 +30,8 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const succeed = (Math.floor(Math.random() * 2) + 1) % 2 === 0
     try {
-      const result = await postUserData(formData, succeed)
+      const result = await postUserData(formData)
       setUser(result.data)
       alert('Successfully created user. Return Home')
     } catch (e) {

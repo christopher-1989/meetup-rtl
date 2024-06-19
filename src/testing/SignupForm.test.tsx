@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react'
 import { type User } from '../context/UserContext'
 import '@testing-library/jest-dom/vitest'
 import SignUpForm from '../components/SignUpForm/SignUpForm'
-import { render } from './test-utils'
+import { render } from './utils/test-utils'
 import userEvent from '@testing-library/user-event'
 
 const DEFAULT_USER: User = {
@@ -76,6 +76,7 @@ describe('Sign Up Form', () => {
     expect(signUpForm).toBeInvalid()
   })
 
+  // Happy path
   test('is valid with all fields provided', async () => {
     const { getByLabelText, getByRole } = render(<SignUpForm />)
     const firstNameInput = selectInput(0)
@@ -130,7 +131,7 @@ describe('Sign Up Form', () => {
   })
 })
 
-function selectInput(number: number) {
+export function selectInput(number: number) {
   const input = screen.getAllByRole('textbox')[number]
   assert(input instanceof HTMLInputElement)
   return input
