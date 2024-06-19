@@ -53,3 +53,23 @@ nav {
   flex-direction: column;
   align-items: center;
 }
+
+.about-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  justify-content: center;
+  margin: auto;
+  text-wrap: pretty;
+}
+
+li {
+  font-size: x-large;
+}
+
+.svg-link {
+  color: black;
+  text-decoration: underline;
+  font-size: x-large;
+}

@@ -5,7 +5,7 @@ import { User, UserContext } from '../context/UserContext'
 import { useContext } from 'react'
 import { UserProvider } from '../providers/UserProvider'
 import SignUpForm from '../components/SignUpForm/SignUpForm'
-import { selectInput } from './SignupForm.test'
+import { selectInput } from './2-SignupForm.test'
 import userEvent from '@testing-library/user-event'
 
 const DEFAULT_USER: User = {
